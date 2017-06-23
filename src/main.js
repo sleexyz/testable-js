@@ -16,7 +16,7 @@ export const mkEnv = ({ mockServices }: MkEnvInput) => {
   if (services.barService == null) {
     services.barService = mkBarService({ services });
   }
-  if (services.barService == null) {
+  if (services.bazService == null) {
     services.bazService = mkBazService({ services });
   }
   return { services };
