@@ -10,9 +10,3 @@ export class Service<Env> {
 export const mockService = <S: {}>(_Service: Class<S>): S => {
   return new _Service();
 };
-
-export type $Env = {
-  [serviceName: string]: {
-    [functionName: string]: *
-  }
-};
