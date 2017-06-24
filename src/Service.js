@@ -6,7 +6,3 @@ export class Service<Env> {
     this.env = env;
   }
 }
-
-export const mockService = <S: {}>(_Service: Class<S>): S => {
-  return new _Service();
-};
