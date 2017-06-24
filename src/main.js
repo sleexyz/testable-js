@@ -1,8 +1,8 @@
 // @flow
 
-import { FooService } from './foo_service';
-import { BarService } from './bar_service';
-import { BazService } from './baz_service';
+import { FooService } from './FooService';
+import { BarService } from './BarService';
+import { BazService } from './BazService';
 
 type MockEnv = { [serviceName: string]: { [functionName: string]: * } }
 

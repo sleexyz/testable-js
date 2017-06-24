@@ -1,6 +1,6 @@
 // @flow
-import { FooService } from './foo_service';
-import { Service } from './service';
+import { FooService } from './FooService';
+import { Service } from './Service';
 
 export class BarService extends Service<{
   fooService: FooService,
