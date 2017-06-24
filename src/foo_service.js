@@ -1,14 +1,12 @@
 // @flow
 
-export type FooService = {
-  method1: () => string,
-  method2: () => string,
-};
+import { Service } from './service';
 
-// eslint-disable-next-line no-unused-vars
-export const mkFooService = (env: {}): FooService => {
-  return {
-    method1: () => 'hello',
-    method2: () => 'world',
-  };
-};
+export class FooService extends Service {
+  method1 = (): string => {
+    return 'hello';
+  }
+  method2 = (): string => {
+    return 'world';
+  }
+}

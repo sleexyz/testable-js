@@ -1,23 +1,21 @@
 // @flow
 
-import { mkFooService } from './foo_service';
-import { mkBarService } from './bar_service';
-import { mkBazService } from './baz_service';
+import { FooService } from './foo_service';
+import { BarService } from './bar_service';
+import { BazService } from './baz_service';
 
-type MkEnvInput = {
-  mockServices: {},
-};
+type MockEnv = { [serviceName: string]: { [functionName: string]: * } }
 
-export const mkEnv = ({ mockServices }: MkEnvInput) => {
-  const services = { ...mockServices };
-  if (services.fooService == null) {
-    services.fooService = mkFooService({ services });
+export const makeEnv = (mockEnv?: MockEnv) => {
+  const env = { ...mockEnv };
+  if (env.fooService == null) {
+    env.fooService = new FooService(env);
   }
-  if (services.barService == null) {
-    services.barService = mkBarService({ services });
+  if (env.barService == null) {
+    env.barService = new BarService(env);
   }
-  if (services.bazService == null) {
-    services.bazService = mkBazService({ services });
+  if (env.bazService == null) {
+    env.bazService = new BazService(env);
   }
-  return { services };
+  return env;
 };

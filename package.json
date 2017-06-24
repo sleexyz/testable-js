@@ -17,6 +17,7 @@
     "eslint-plugin-react": "^7.1.0",
     "mocha": "^3.4.2",
     "mocha-webpack": "^0.7.0",
+    "sinon": "^2.3.5",
     "source-map-support": "^0.4.15",
     "webpack": "^3.0.0",
     "webpack-node-externals": "^1.6.0"
