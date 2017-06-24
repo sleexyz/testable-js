@@ -8,14 +8,14 @@ import { BarServiceMock } from './BarService';
 describe('BazService', () => {
   describe('method', () => {
     it('works', () => {
-      const env = {
+      const mockedEnv = {
         barService: new BarServiceMock(),
         fooService: {
           method2: sinon.stub().returns('2'),
         },
       };
-      const { bazService } = makeEnv(env);
-      expect(bazService.method()).to.eql('baz: 2 bar-test');
+      const env = makeEnv(mockedEnv);
+      expect(env.bazService.method()).to.eql('baz: 2 bar-test');
     });
   });
 });

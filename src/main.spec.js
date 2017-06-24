@@ -7,7 +7,6 @@ import { makeEnv } from './main';
 describe('makeEnv', () => {
   it('works', () => {
     const env = makeEnv();
-    const { bazService } = env;
-    expect(bazService.method()).to.eql('baz: world hello');
+    expect(env.bazService.method()).to.eql('baz: world hello');
   });
 });
