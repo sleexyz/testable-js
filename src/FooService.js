@@ -1,5 +1,4 @@
 // @flow
-
 import { Service } from './Service';
 
 export class FooService extends Service {
