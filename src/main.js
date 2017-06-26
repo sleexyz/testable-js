@@ -1,8 +1,8 @@
 // @flow
 
-import { FooService } from './FooService';
-import { BarService } from './BarService';
-import { BazService } from './BazService';
+import { makeFooService } from './FooService';
+import { makeBarService } from './BarService';
+import { makeBazService } from './BazService';
 
 type Env = {
   [serviceName: string]: {
@@ -12,8 +12,8 @@ type Env = {
 
 export const makeEnv = (mockEnv?: Env) => {
   const env = { ...mockEnv };
-  env.fooService = env.fooService || new FooService(env);
-  env.barService = env.barService || new BarService(env);
-  env.bazService = env.bazService || new BazService(env);
+  env.fooService = env.fooService || makeFooService(env);
+  env.barService = env.barService || makeBarService(env);
+  env.bazService = env.bazService || makeBazService(env);
   return env;
 };

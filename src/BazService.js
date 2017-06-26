@@ -1,13 +1,18 @@
 // @flow
-import { Service } from './Service';
-import { FooService } from './FooService';
-import { BarService } from './BarService';
+import type { FooService } from './FooService';
+import type { BarService } from './BarService';
 
-export class BazService extends Service<{
+export type BazService = {|
+  method: () => string
+|}
+
+type Env = {
   fooService: FooService,
   barService: BarService,
-}> {
-  method = (): string => {
-    return `baz: ${this.env.fooService.method2()} ${this.env.barService.method()}`;
-  }
 }
+
+export const makeBazService = (env: Env) => ({
+  method: (): string => {
+    return `baz: ${env.fooService.method2()} ${env.barService.method()}`;
+  },
+});

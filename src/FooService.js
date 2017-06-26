@@ -1,11 +1,14 @@
 // @flow
-import { Service } from './Service';
+export type FooService = {|
+  method1: () => string,
+  method2: () => string
+|}
 
-export class FooService extends Service {
-  method1 = (): string => {
+export const makeFooService: * => FooService = () => ({
+  method1: (): string => {
     return 'hello';
-  }
-  method2 = (): string => {
+  },
+  method2: (): string => {
     return 'world';
-  }
-}
+  },
+});

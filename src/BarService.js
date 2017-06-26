@@ -1,20 +1,16 @@
 // @flow
-import sinon from 'sinon';
-import { FooService } from './FooService';
-import { Service } from './Service';
+import type { FooService } from './FooService';
 
-export interface BarInterface {
-  method(): string,
-}
+export type BarService = {|
+  method: () => string,
+|}
 
-export class BarService extends Service<{
+type Env = {
   fooService: FooService,
-}> implements BarInterface {
-  method = () => {
-    return this.env.fooService.method1();
-  }
 }
 
-export class BarServiceMock implements BarInterface {
-  method = sinon.stub().returns('bar-test');
-}
+export const makeBarService = (env: Env): BarService => ({
+  method: () => {
+    return env.fooService.method1();
+  },
+});

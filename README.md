@@ -1,1 +1,1 @@
-# Module based testable architecture
+# Statically Analyzable Dependency Injection in JS
