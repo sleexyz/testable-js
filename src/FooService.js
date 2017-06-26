@@ -1,6 +1,7 @@
 // @flow
-import { Service } from './Service';
+import { Service, registerService } from './Service';
 
+@registerService
 export class FooService extends Service {
   method1 = (): string => {
     return 'hello';

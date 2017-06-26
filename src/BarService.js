@@ -1,12 +1,13 @@
 // @flow
 import sinon from 'sinon';
 import { FooService } from './FooService';
-import { Service } from './Service';
+import { Service, registerService } from './Service';
 
 export interface BarInterface {
   method(): string,
 }
 
+@registerService
 export class BarService extends Service<{
   fooService: FooService,
 }> implements BarInterface {
