@@ -9,38 +9,46 @@ import type { BarService } from './BarService';
 import type { BazService } from './BazService';
 
 describe('BazService', () => {
+  class BazServiceTest {
+    fooService: FooService
+    barService: BarService
+    bazService: BazService
+    constructor() {
+      this.fooService = {
+        method1: sinon.stub(),
+        method2: sinon.stub().returns('2'),
+      };
+      this.barService = makeBarService();
+      const mockEnv = {
+        fooService: this.fooService,
+        barService: this.barService,
+      };
+      const env = makeEnv(mockEnv);
+      this.bazService = env.bazService;
+    }
+  }
+
   describe('method', () => {
-    class BazServiceTest {
-      fooService: FooService
-      barService: BarService
-      bazService: BazService
+    class MethodTest extends BazServiceTest {
+      result: string
       constructor() {
-        this.fooService = {
-          method1: sinon.stub(),
-          method2: sinon.stub().returns('2'),
-        };
-        this.barService = makeBarService();
-        const mockEnv = {
-          fooService: this.fooService,
-          barService: this.barService,
-        };
-        const env = makeEnv(mockEnv);
-        this.bazService = env.bazService;
+        super();
+        this.result = this.bazService.method();
       }
     }
 
     it('appends text properly', function () {
-      expect(this.bazService.method()).to.eql('baz: 2 bar-test');
-    }.bind(new BazServiceTest()));
+      expect(this.result).to.eql('baz: 2 bar-test');
+    }.bind(new MethodTest()));
 
     it('calls fooService.method2 once', function () {
-      this.bazService.method();
       expect(this.fooService.method2.callCount).to.eql(1);
-    }.bind(new BazServiceTest()));
+    }.bind(new MethodTest()));
 
     it('calls barService.method once', function () {
-      this.bazService.method();
       expect(this.barService.method.callCount).to.eql(1);
-    }.bind(new BazServiceTest()));
+    }.bind(new MethodTest()));
+
   });
+
 });
